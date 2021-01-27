@@ -1,6 +1,6 @@
 function Login() {
   return (
-    <div>
+    <div className="content">
       <h1>Inici sessió</h1> <p>en desenvolupament</p>
     </div>
   )
