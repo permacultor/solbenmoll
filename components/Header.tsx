@@ -5,7 +5,7 @@ import BarsIcon from './Icons/Bars'
 import Image from 'next/image'
 import PhoneIcon from './Icons/Phone'
 import LoginIcon from './Icons/Login'
-import CartIcon from './Icons/Cart'
+import BasketIcon from './Icons/Basket'
 import { useState } from 'react'
 
 const Menu = dynamic(() => import('./Menu'), { ssr: false })
@@ -53,7 +53,7 @@ function Header() {
         </Link>
         <Link href="/les-meves-cistelles">
           <a title="Les meves cistelles">
-            <CartIcon width={iconSize} height={iconSize} />
+            <BasketIcon width={iconSize} height={iconSize} />
           </a>
         </Link>
       </div>
