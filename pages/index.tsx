@@ -10,6 +10,8 @@ export default function Home() {
         src="/assets/banner.jpg"
         layout="responsive"
         loading="lazy"
+        placeholder="blur"
+        className="banner"
         height={385}
         width={771}
       />

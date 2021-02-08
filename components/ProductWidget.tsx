@@ -12,6 +12,7 @@ function ProductWidget({ link, image, menuName, name, price }) {
           <Image
             alt={name}
             src={image}
+            placeholder="blur"
             layout="intrinsic"
             className="product-image"
             loading="lazy"

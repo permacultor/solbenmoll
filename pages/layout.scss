@@ -87,6 +87,7 @@ body {
 
 .product-image {
   border-radius: 2vw;
+  background-color: #e2e2e2;
 }
 
 .my-baskets {
@@ -94,6 +95,10 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
   row-gap: 10px;
   column-gap: 10px;
+}
+
+.banner {
+  background-color: #28211b;
 }
 
 @media (max-width: 700px) {
