@@ -5,11 +5,17 @@ function Calendar(props) {
 
   return (
     <div className={styles.calendar} {...props}>
-      {weeks.map((week) => (
-        <div key={week.name} className={styles.day}>
-          {week.name}
-        </div>
-      ))}
+      {weeks.map((week, index) => {
+        const active = index % 4 === 0 // todo
+        return (
+          <div
+            key={week.name}
+            className={`${styles.day} ${active ? styles.active : ''}`}
+          >
+            {active ? <b>{week.name}</b> : week.name}
+          </div>
+        )
+      })}
     </div>
   )
 }

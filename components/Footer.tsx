@@ -21,8 +21,8 @@ function Footer() {
         </div>
         <div>
           <div className="links">
-            <div>
-              © Sòl Ben Moll 2020 - {new Date().getFullYear()} {'· '}
+            <div style={{ padding: '0 10px' }}>
+              © Sòl Ben Moll {new Date().getFullYear() + ' '}
             </div>
             <Link href="/">
               <a>Condicions generals</a>

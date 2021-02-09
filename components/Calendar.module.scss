@@ -1,19 +1,27 @@
 .calendar {
-  background-color: #99b67e88;
   width: 100%;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
   min-height: 100px;
+  border-radius: 4px;
 
   .day {
     padding: 30px 10px;
     width: 200px;
     margin: 10px;
+    opacity: 0.6;
+    border-radius: 4px;
     text-align: center;
     height: 200px;
-    background-color: #99b67e;
+    box-shadow: 2px 2px 10px 0px rgba(102, 102, 102, 0.5);
+    background-color: #99b67e33;
+
+    &.active {
+      opacity: 1;
+      background-color: white;
+    }
   }
 }
 
@@ -24,13 +32,26 @@
     flex-wrap: nowrap;
     overflow-y: hidden;
     overflow-x: auto;
-    align-items: stretch;
+    align-items: flex-start;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
 
+    // Hide scrollbar in Safari / Chrome
+    &::-webkit-scrollbar-track,
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-thumb {
+      width: 0 !important;
+      height: 0 !important;
+      display: none;
+    }
+    // Hide scrollbar in Firefox
+    scrollbar-width: none;
+    // Hide scrollbar in IE
+    -ms-overflow-style: none;
+
     .day {
       margin: 5px;
-      scroll-snap-align: start;
+      scroll-snap-align: center;
       min-width: 200px;
     }
   }
