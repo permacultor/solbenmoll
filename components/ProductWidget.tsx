@@ -27,7 +27,7 @@ function ProductWidget({ link, image, menuName, name, price }) {
         </Link>
         <span className={styles.price}>{price} €</span>
       </h2>
-      <SelectButton onChange={(value) => console.log('todo', value)} />
+      <SelectButton />
     </div>
   )
 }

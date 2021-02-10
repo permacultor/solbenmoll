@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import Router from 'next/router'
+
 import styles from './SelectButton.module.scss'
 
-function SelectButton({ onChange }) {
+function SelectButton() {
   const [value, setValue] = useState('1')
   const classes = [styles.selectButton]
   const options = [
@@ -30,7 +32,9 @@ function SelectButton({ onChange }) {
         <input className={styles.number} min={1} type="number" value={1} />
       </div>
       <button
-        onClick={() => onChange(value)}
+        onClick={() =>
+          Router.push('/inici-sessio').then(() => window.scrollTo(0, 0))
+        }
         className={`button ${styles.button}`}
       >
         Afageix a la subscripció

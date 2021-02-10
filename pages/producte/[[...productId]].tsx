@@ -1,4 +1,4 @@
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import prisma from '../../lib/prisma'
 import SelectButton from '../../components/SelectButton'
@@ -57,13 +57,7 @@ function Product({ product }) {
         </div>
         <div className="product-content">
           <div dangerouslySetInnerHTML={{ __html: product.description }}></div>
-          <SelectButton
-            onChange={(e) => {
-              Router.push('/les-meves-cistelles').then(() =>
-                window.scrollTo(0, 0)
-              )
-            }}
-          />
+          <SelectButton />
         </div>
       </div>
     </div>
