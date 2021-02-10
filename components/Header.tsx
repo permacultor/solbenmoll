@@ -17,7 +17,7 @@ function Header() {
   return (
     <>
       {menuOpen && <Menu onClose={() => setMenuOpen(false)} />}
-      <div className="header">
+      <header className="header">
         <div className="menu-and-logo">
           <BarsIcon
             onClick={() => setMenuOpen(true)}
@@ -32,15 +32,15 @@ function Header() {
                 alt="Solbenmoll"
                 src="/solbenmoll.svg"
                 layout="fixed"
-                width={120}
+                width={95}
                 loading="eager"
                 priority
-                height={61.63}
+                height={48.79}
               />
             </a>
           </Link>
         </div>
-        <div className="icons">
+        <nav className="icons">
           <Link href="/contacte">
             <a title="Contacte amb nosaltres">
               <PhoneIcon width={iconSize} height={iconSize} />
@@ -57,8 +57,8 @@ function Header() {
               <BasketIcon width={iconSize} height={iconSize} />
             </a>
           </Link>
-        </div>
-      </div>
+        </nav>
+      </header>
     </>
   )
 }

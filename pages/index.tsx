@@ -6,7 +6,13 @@ export default function Home() {
   return (
     <>
       <Image
+        onClick={() =>
+          document
+            .querySelector('#que-fem')
+            .scrollIntoView({ behavior: 'smooth' })
+        }
         alt="Solbenmoll banner"
+        title="Prem per saber-ne més"
         src="/assets/banner.jpg"
         layout="responsive"
         loading="lazy"

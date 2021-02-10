@@ -53,7 +53,7 @@ function Menu({ onClose }) {
       </Link>
       <Link href="/inici-sessio">
         <a>
-          <div>INICIA SESSIÓ</div>
+          <div>COMPTE D'USUARI</div>
         </a>
       </Link>
       <Link href="/contacte">

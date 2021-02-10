@@ -1,7 +1,10 @@
+import LoginForm from '../components/LoginForm'
+
 function Login() {
   return (
     <div className="content">
-      <h1>Inici sessió</h1> <p>en desenvolupament</p>
+      <h1 style={{ textAlign: 'center' }}>Inicia la sessió</h1>
+      <LoginForm />
     </div>
   )
 }

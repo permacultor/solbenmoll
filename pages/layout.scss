@@ -1,7 +1,7 @@
 html,
 body {
   height: -webkit-fill-available;
-  margin: 44px 0 0;
+  margin: 38px 0 0;
   line-height: 1.5;
   background-color: white;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
@@ -79,14 +79,20 @@ body {
 }
 
 .content {
-  padding: 15px;
+  padding: 30px;
   position: relative;
   max-width: 960px;
+  min-height: 70vh;
   margin: 0 auto;
 }
 
-.product-image {
+.product-image,
+.product-image-full {
   background-color: #e2e2e2;
+}
+
+.product-image-full {
+  border-radius: 2vw;
 }
 
 .product-image:hover {
@@ -98,11 +104,22 @@ body {
   border-radius: 2vw;
 }
 
+.product-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .product-content {
+    max-width: 350px;
+    padding: 50px;
+  }
+}
+
 .my-baskets {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  row-gap: 10px;
-  column-gap: 10px;
+  row-gap: 15px;
+  column-gap: 15px;
 }
 
 .button {
@@ -116,6 +133,17 @@ body {
   border-radius: 30px;
   appearance: none;
   outline: none;
+
+  &.default {
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+  }
+
+  &:not(.default):hover {
+    background-color: #99b67edd;
+    border: 1px solid #99b67edd;
+  }
 }
 
 .footer {
@@ -156,10 +184,11 @@ a {
 }
 
 .banner {
+  cursor: pointer;
   background-color: #28211b;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .my-baskets {
     grid-template-columns: 1fr 1fr;
   }
@@ -176,5 +205,20 @@ a {
     > a {
       margin: 5px 0;
     }
+  }
+
+  .product-page {
+    flex-direction: column;
+  }
+
+  .product-page .product-content {
+    padding: 0 !important;
+    max-width: none;
+  }
+}
+
+@media (max-width: 450px) {
+  .my-baskets {
+    grid-template-columns: 1fr;
   }
 }

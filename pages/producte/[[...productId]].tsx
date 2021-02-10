@@ -1,6 +1,7 @@
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 import Image from 'next/image'
 import prisma from '../../lib/prisma'
+import SelectButton from '../../components/SelectButton'
 
 export async function getStaticProps({ params }) {
   const [type, id] = params.productId
@@ -36,19 +37,35 @@ function Product({ product }) {
 
   return (
     <div className="content">
-      <Image
-        alt={product.name}
-        src={`/assets/${image}`}
-        layout="intrinsic"
-        loading="lazy"
-        height={375}
-        width={500}
-      />
-      {product.menuName && <p>{product.menuName}:</p>}
-      <h1>
-        {product.name} ({product.kg} Kg)
-      </h1>
-      <div dangerouslySetInnerHTML={{ __html: product.description }}></div>
+      <div className="product-page">
+        <div>
+          <Image
+            alt={product.name}
+            src={`/assets/${image}`}
+            layout="intrinsic"
+            loading="lazy"
+            className="product-image-full"
+            height={375}
+            width={500}
+          />
+        </div>
+        <div className="product-content">
+          {product.menuName && (
+            <h1 style={{ fontSize: 22, margin: 0 }}>{product.menuName}</h1>
+          )}
+          <h2 style={{ fontSize: 16, margin: 0 }}>
+            {product.name} ({product.kg} Kg)
+          </h2>
+          <div dangerouslySetInnerHTML={{ __html: product.description }}></div>
+          <SelectButton
+            onChange={(e) => {
+              Router.push('/les-meves-cistelles').then(() =>
+                window.scrollTo(0, 0)
+              )
+            }}
+          />
+        </div>
+      </div>
     </div>
   )
 }
