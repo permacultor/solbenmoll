@@ -37,6 +37,12 @@ function Product({ product }) {
 
   return (
     <div className="content">
+      {product.menuName && (
+        <h1 style={{ fontSize: 22, margin: 0 }}>{product.menuName}</h1>
+      )}
+      <h2 style={{ fontSize: 16, margin: '0 0 15px 0' }}>
+        {product.name} ({product.kg} Kg)
+      </h2>
       <div className="product-page">
         <div>
           <Image
@@ -50,12 +56,6 @@ function Product({ product }) {
           />
         </div>
         <div className="product-content">
-          {product.menuName && (
-            <h1 style={{ fontSize: 22, margin: 0 }}>{product.menuName}</h1>
-          )}
-          <h2 style={{ fontSize: 16, margin: 0 }}>
-            {product.name} ({product.kg} Kg)
-          </h2>
           <div dangerouslySetInnerHTML={{ __html: product.description }}></div>
           <SelectButton
             onChange={(e) => {
