@@ -23,7 +23,7 @@ export async function getStaticProps() {
 }
 
 export default function Home({ baskets, extras }) {
-  const { t } = useTranslation('home')
+  const { t, lang } = useTranslation('home')
 
   return (
     <>
@@ -35,13 +35,13 @@ export default function Home({ baskets, extras }) {
         }
         alt="Sòl Ben Moll banner"
         title={t`banner-title`}
-        src="/assets/banner.jpg"
+        src={`/assets/banner-${lang}.jpg`}
         layout="responsive"
         loading="lazy"
         placeholder="blur"
         className="banner"
-        height={385}
-        width={771}
+        height={960}
+        width={1920}
       />
       <div className="content">
         <Anchor id="que-fem" />
