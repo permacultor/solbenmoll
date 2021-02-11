@@ -1,9 +1,11 @@
+import useTranslation from 'next-translate/useTranslation'
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 
 function Menu({ onClose }) {
   const initTouch = { x: undefined, y: undefined }
   const lastTouch = useRef(initTouch)
+  const { t } = useTranslation('common')
 
   useEffect(registerClickEvent, [])
   function registerClickEvent() {
@@ -43,22 +45,22 @@ function Menu({ onClose }) {
     >
       <Link href="/#que-fem">
         <a>
-          <div>QUÈ FEM?</div>
+          <div>{t`info`.toUpperCase()}</div>
         </a>
       </Link>
       <Link href="/les-meves-cistelles">
         <a>
-          <div>LES MEVES CISTELLES</div>
+          <div>{t`my-baskets`.toUpperCase()}</div>
         </a>
       </Link>
       <Link href="/inici-sessio">
         <a>
-          <div>COMPTE D'USUARI</div>
+          <div>{t`login`.toUpperCase()}</div>
         </a>
       </Link>
       <Link href="/contacte">
         <a>
-          <div>CONTACTE</div>
+          <div>{t`contact`.toUpperCase()}</div>
         </a>
       </Link>
     </div>

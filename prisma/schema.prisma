@@ -5,25 +5,28 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["orderByRelation"]
+}
+
+model Product {
+  name   String   @id
+  nameEs String
+  basket Basket[]
 }
 
 model Basket {
-  id          String       @id
-  name        String
-  menuName    String
-  description String
-  kg          Int
-  price       Float
-  available   Boolean      @default(true)
-  UserBasket  UserBasket[]
+  id         String       @id
+  kg         Int
+  price      Float
+  available  Boolean      @default(true)
+  products   Product[]
+  UserBasket UserBasket[]
 }
 
 model Extra {
   id           String      @id
-  name         String
-  menuName     String
-  description  String
+  kg           Int
   price        Float
   available    Boolean     @default(true)
   UserBasket   UserBasket? @relation(fields: [userBasketId], references: [id])

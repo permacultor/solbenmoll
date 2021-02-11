@@ -1,7 +1,11 @@
+import useTranslation from 'next-translate/useTranslation'
+
 function Contacte() {
+  const { t } = useTranslation('contact')
+
   return (
     <div className="content">
-      <h1>Contacte</h1> <p>en desenvolupament</p>
+      <h1>{t`title`}</h1>
     </div>
   )
 }

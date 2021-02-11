@@ -7,12 +7,14 @@ import PhoneIcon from './Icons/Phone'
 import LoginIcon from './Icons/Login'
 import BasketIcon from './Icons/Basket'
 import { useState } from 'react'
+import useTranslation from 'next-translate/useTranslation'
 
 const Menu = dynamic(() => import('./Menu'), { ssr: false })
 
 function Header() {
   const iconSize = 18
   const [menuOpen, setMenuOpen] = useState(false)
+  const { t } = useTranslation('common')
 
   return (
     <>
@@ -21,15 +23,15 @@ function Header() {
         <div className="menu-and-logo">
           <BarsIcon
             onClick={() => setMenuOpen(true)}
-            title="Menú"
+            title={t`menu`}
             className="bar-icon"
             width={30}
             height={30}
           />
           <Link href="/">
-            <a className="logo" title="Solbenmoll">
+            <a className="logo" title={t`brand`}>
               <Image
-                alt="Solbenmoll"
+                alt={t`brand`}
                 src="/solbenmoll.svg"
                 layout="fixed"
                 width={95}
@@ -42,18 +44,18 @@ function Header() {
         </div>
         <nav className="icons">
           <Link href="/contacte">
-            <a title="Contacte amb nosaltres">
+            <a title={t`contact-title`}>
               <PhoneIcon width={iconSize} height={iconSize} />
             </a>
           </Link>
 
           <Link href="/inici-sessio">
-            <a title="Inici sessió">
+            <a title={t`login`}>
               <LoginIcon width={iconSize} height={iconSize} />
             </a>
           </Link>
           <Link href="/les-meves-cistelles">
-            <a title="Les meves cistelles">
+            <a title={t`my-baskets`}>
               <BasketIcon width={iconSize} height={iconSize} />
             </a>
           </Link>

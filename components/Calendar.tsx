@@ -1,7 +1,9 @@
+import useTranslation from 'next-translate/useTranslation'
 import styles from './Calendar.module.scss'
 
 function Calendar(props) {
-  const weeks = getWeeks()
+  const { lang } = useTranslation()
+  const weeks = getWeeks(lang)
 
   return (
     <div className={styles.calendar} {...props}>

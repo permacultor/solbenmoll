@@ -1,15 +1,22 @@
+import useTranslation from 'next-translate/useTranslation'
 import Calendar from '../components/Calendar'
 import ProductWidget from '../components/ProductWidget'
 import prisma from '../lib/prisma'
 
 export async function getStaticProps() {
-  const select = { id: true, name: true, price: true, menuName: true }
-  const baskets = await prisma.basket.findMany({ select })
-  const extras = await prisma.extra.findMany({ select })
+  const query = {
+    select: { id: true, price: true },
+    where: { available: true },
+    orderBy: { price: 'asc' },
+  } as any
+  const baskets = await prisma.basket.findMany(query)
+  const extras = await prisma.extra.findMany(query)
   return { props: { baskets, extras } }
 }
 
 function MyBaskets({ baskets, extras }) {
+  const { t } = useTranslation('my-baskets')
+
   function scrollToCalendar() {
     const calendar = document.querySelector('#calendar')
     const position = calendar.getBoundingClientRect()
@@ -30,40 +37,26 @@ function MyBaskets({ baskets, extras }) {
           marginBottom: 10,
         }}
       >
-        <h1 style={{ margin: 0 }}>Les meves cistelles</h1>
+        <h1 style={{ margin: 0 }}>{t`title`}</h1>
         <button
           style={{ marginLeft: 'auto' }}
           className="button"
           onClick={scrollToCalendar}
         >
-          Veure calendari
+          {t`view-calendar`}
         </button>
       </div>
 
       <div className="my-baskets">
         {baskets.map((basket) => (
-          <ProductWidget
-            image="/assets/basket.png"
-            key={basket.id}
-            link={`/producte/cistella/${basket.id}`}
-            menuName={basket.menuName}
-            name={basket.name}
-            price={basket.price}
-          />
+          <ProductWidget key={basket.id} product={basket} />
         ))}
         {extras.map((extra) => (
-          <ProductWidget
-            image={`/assets/${extra.id}.png`}
-            key={extra.id}
-            link={`/producte/extra/${extra.id}`}
-            menuName={extra.menuName}
-            name={extra.name}
-            price={extra.price}
-          />
+          <ProductWidget key={extra.id} product={extra} type="extra" />
         ))}
       </div>
       <h2 id="calendar" style={{ marginTop: 50 }}>
-        Cistelles programades en les pròximes setmanes
+        {t`next-weeks-baskets`}
       </h2>
       <Calendar id="calendar" />
     </div>

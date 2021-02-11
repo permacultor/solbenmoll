@@ -95,6 +95,10 @@ body {
   border-radius: 2vw;
 }
 
+.center {
+  text-align: center;
+}
+
 .product-image:hover {
   transform: scale(1.1);
   transition: transform 0.2s;
@@ -110,7 +114,7 @@ body {
   align-items: center;
 
   .product-content {
-    max-width: 350px;
+    width: 350px;
     padding: 0 50px;
   }
 }
@@ -188,6 +192,10 @@ a {
   background-color: #28211b;
 }
 
+.errorMsg {
+  color: #c62828;
+}
+
 @media (max-width: 900px) {
   .my-baskets {
     grid-template-columns: 1fr 1fr;
@@ -205,6 +213,10 @@ a {
     > a {
       margin: 5px 0;
     }
+
+    select {
+      margin-top: 10px !important;
+    }
   }
 
   .product-page {
@@ -213,7 +225,7 @@ a {
 
   .product-page .product-content {
     padding: 0 !important;
-    max-width: none;
+    width: auto !important;
   }
 }
 

@@ -1,16 +1,18 @@
 import { useState } from 'react'
 import Router from 'next/router'
+import useTranslation from 'next-translate/useTranslation'
 
 import styles from './SelectButton.module.scss'
 
 function SelectButton() {
+  const { t } = useTranslation('my-baskets')
   const [value, setValue] = useState('1')
   const classes = [styles.selectButton]
   const options = [
-    { label: 'Cada setmana', value: '1' },
-    { label: 'Cada 2 setmanes', value: '2' },
-    { label: 'Cada 3 setmanes', value: '3' },
-    { label: 'Cada mes', value: '4' },
+    { label: t`freq-1`, value: '1' },
+    { label: t`freq-2`, value: '2' },
+    { label: t`freq-3`, value: '3' },
+    { label: t`freq-4`, value: '4' },
   ]
 
   if (value) classes.push(styles.selected)
@@ -37,7 +39,7 @@ function SelectButton() {
         }
         className={`button ${styles.button}`}
       >
-        Afageix a la subscripció
+        {t`add-button`}
       </button>
     </>
   )
