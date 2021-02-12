@@ -43,7 +43,7 @@ function Menu({ onClose }) {
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      <Link href="/#que-fem">
+      <Link href={`/?displayText=${Date.now()}`} as="/">
         <a>
           <div>{t`info`.toUpperCase()}</div>
         </a>

@@ -49,9 +49,9 @@ function usePersistLocaleCookie() {
 }
 
 function MyApp({ Component, pageProps }) {
-  const { locale, asPath } = useRouter()
+  const { locale, defaultLocale, asPath } = useRouter()
   const path = asPath === '/' ? '' : asPath
-  const prefix = locale === 'es' ? '/es' : ''
+  const prefix = locale === defaultLocale ? '' : '/' + locale
 
   useSW()
   usePersistLocaleCookie()

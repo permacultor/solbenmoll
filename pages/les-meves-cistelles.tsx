@@ -1,4 +1,5 @@
 import useTranslation from 'next-translate/useTranslation'
+import Breadcrumb from '../components/Breadcrumb'
 import Calendar from '../components/Calendar'
 import ProductWidget from '../components/ProductWidget'
 import prisma from '../lib/prisma'
@@ -28,6 +29,15 @@ function MyBaskets({ baskets, extras }) {
 
   return (
     <div className="content">
+      <Breadcrumb
+        currentPageName={t`common:products`}
+        links={[
+          {
+            href: '/',
+            name: 'common:home',
+          },
+        ]}
+      />
       <div
         style={{
           display: 'flex',

@@ -1,0 +1,31 @@
+.breadcrumbWrapper {
+  text-align: left;
+  margin-bottom: 40px;
+
+  .breadcrumb {
+    color: #666;
+    text-align: left;
+
+    a {
+      margin-right: 8px;
+      @media (max-width: 700) {
+        line-height: 25px;
+      }
+      text-decoration: none;
+      color: #666;
+
+      &:hover {
+        color: #335514;
+      }
+    }
+
+    .currentPage {
+      color: black;
+    }
+
+    .currentPage:not(:first-child),
+    a:not(:first-child) {
+      margin-left: 10px;
+    }
+  }
+}

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import useTranslation from 'next-translate/useTranslation'
 import prisma from '../../lib/prisma'
 import SelectButton from '../../components/SelectButton'
+import Breadcrumb from '../../components/Breadcrumb'
 
 export async function getStaticProps({ params }) {
   const [type, id] = params.productId
@@ -57,6 +58,19 @@ function Product({ product }) {
 
   return (
     <div className="content">
+      <Breadcrumb
+        currentPageName={name}
+        links={[
+          {
+            href: '/',
+            name: 'common:home',
+          },
+          {
+            href: '/les-meves-cistelles',
+            name: 'common:products',
+          },
+        ]}
+      />
       <h1 style={{ fontSize: 22, margin: 0 }}>{name}</h1>
       <h2 style={{ fontSize: 16, margin: '0 0 15px 0' }}>{details}</h2>
       <div className="product-page">

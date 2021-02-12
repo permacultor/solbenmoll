@@ -3,6 +3,8 @@ import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import Anchor from '../components/Anchor'
 import prisma from '../lib/prisma'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 export async function getStaticProps() {
   const selectB = { id: true, price: true, products: true, kg: true }
@@ -23,16 +25,21 @@ export async function getStaticProps() {
 }
 
 export default function Home({ baskets, extras }) {
+  const { query } = useRouter()
   const { t, lang } = useTranslation('home')
+
+  function navigateToText() {
+    document.querySelector('#que-fem').scrollIntoView({ behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    if (query.displayText) navigateToText()
+  }, [query.displayText])
 
   return (
     <>
       <Image
-        onClick={() =>
-          document
-            .querySelector('#que-fem')
-            .scrollIntoView({ behavior: 'smooth' })
-        }
+        onClick={navigateToText}
         alt="Sòl Ben Moll banner"
         title={t`banner-title`}
         src={`/assets/banner-${lang}.jpg`}
