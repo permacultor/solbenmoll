@@ -2,7 +2,6 @@ import useTranslation from 'next-translate/useTranslation'
 import Breadcrumb from '../components/Breadcrumb'
 import InstaIcon from '../components/Icons/Insta'
 import MailIcon from '../components/Icons/Mail'
-import PhoneIcon from '../components/Icons/Phone'
 
 function Contacte() {
   const { t } = useTranslation('contact')
@@ -25,16 +24,10 @@ function Contacte() {
         <MailIcon width={18} height={18} />
         <a
           style={{ marginLeft: 10 }}
-          href="mailto:contacte@solbenmoll.com"
+          href="mailto:info@solbenmoll.com"
           target="_blank"
         >
-          contacte@solbenmoll.com
-        </a>
-      </div>
-      <div style={containerStyles}>
-        <PhoneIcon width={18} height={18} />
-        <a style={{ marginLeft: 10 }} href="tel:+34644962008" target="_blank">
-          +34 644 96 20 08
+          info@solbenmoll.com
         </a>
       </div>
       <div style={containerStyles}>
