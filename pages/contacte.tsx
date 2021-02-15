@@ -20,6 +20,7 @@ function Contacte() {
         ]}
       />
       <h1>{title}</h1>
+      <h2>{t`description`}</h2>
       <div style={containerStyles}>
         <MailIcon width={18} height={18} />
         <a
