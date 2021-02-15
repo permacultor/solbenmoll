@@ -8,10 +8,12 @@ import LoginIcon from './Icons/Login'
 import BasketIcon from './Icons/Basket'
 import { useState } from 'react'
 import useTranslation from 'next-translate/useTranslation'
+import { useCtx } from '../pages/_app'
 
 const Menu = dynamic(() => import('./Menu'), { ssr: false })
 
 function Header() {
+  const ctx = useCtx()
   const iconSize = 18
   const [menuOpen, setMenuOpen] = useState(false)
   const { t } = useTranslation('common')
@@ -48,17 +50,20 @@ function Header() {
               <PhoneIcon width={iconSize} height={iconSize} />
             </a>
           </Link>
-
-          <Link href="/inici-sessio">
-            <a title={t`login`}>
-              <LoginIcon width={iconSize} height={iconSize} />
-            </a>
-          </Link>
-          <Link href="/les-meves-cistelles">
-            <a title={t`my-baskets`}>
-              <BasketIcon width={iconSize} height={iconSize} />
-            </a>
-          </Link>
+          {ctx.new && (
+            <>
+              <Link href="/inici-sessio">
+                <a title={t`login`}>
+                  <LoginIcon width={iconSize} height={iconSize} />
+                </a>
+              </Link>
+              <Link href="/les-meves-cistelles">
+                <a title={t`my-baskets`}>
+                  <BasketIcon width={iconSize} height={iconSize} />
+                </a>
+              </Link>
+            </>
+          )}
         </nav>
       </header>
     </>

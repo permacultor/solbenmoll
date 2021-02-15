@@ -1,10 +1,12 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, createContext, useContext } from 'react'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 
 import './layout.scss'
+
+const Ctx = createContext({ new: false })
 
 function Layout({ children }) {
   return (
@@ -49,7 +51,7 @@ function usePersistLocaleCookie() {
 }
 
 function MyApp({ Component, pageProps }) {
-  const { locale, defaultLocale, asPath } = useRouter()
+  const { query, locale, defaultLocale, asPath } = useRouter()
   const path = asPath === '/' ? '' : asPath
   const prefix = locale === defaultLocale ? '' : '/' + locale
 
@@ -57,7 +59,7 @@ function MyApp({ Component, pageProps }) {
   usePersistLocaleCookie()
 
   return (
-    <>
+    <Ctx.Provider value={{ new: Boolean(query.new) }}>
       <Head>
         <title>Sòl Ben Moll</title>
         <link rel="icon" href="/favicon.ico" />
@@ -76,8 +78,10 @@ function MyApp({ Component, pageProps }) {
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </>
+    </Ctx.Provider>
   )
 }
+
+export const useCtx = () => useContext(Ctx)
 
 export default MyApp

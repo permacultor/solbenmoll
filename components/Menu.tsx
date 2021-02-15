@@ -1,8 +1,10 @@
 import useTranslation from 'next-translate/useTranslation'
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
+import { useCtx } from '../pages/_app'
 
 function Menu({ onClose }) {
+  const ctx = useCtx()
   const initTouch = { x: undefined, y: undefined }
   const lastTouch = useRef(initTouch)
   const { t } = useTranslation('common')
@@ -48,16 +50,21 @@ function Menu({ onClose }) {
           <div>{t`info`.toUpperCase()}</div>
         </a>
       </Link>
-      <Link href="/les-meves-cistelles">
-        <a>
-          <div>{t`my-baskets`.toUpperCase()}</div>
-        </a>
-      </Link>
-      <Link href="/inici-sessio">
-        <a>
-          <div>{t`login`.toUpperCase()}</div>
-        </a>
-      </Link>
+      {ctx.new && (
+        <Link href="/les-meves-cistelles">
+          <a>
+            <div>{t`my-baskets`.toUpperCase()}</div>
+          </a>
+        </Link>
+      )}
+
+      {ctx.new && (
+        <Link href="/inici-sessio">
+          <a>
+            <div>{t`login`.toUpperCase()}</div>
+          </a>
+        </Link>
+      )}
       <Link href="/contacte">
         <a>
           <div>{t`contact`.toUpperCase()}</div>

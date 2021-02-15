@@ -5,6 +5,7 @@ import Anchor from '../components/Anchor'
 import prisma from '../lib/prisma'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { useCtx } from './_app'
 
 export async function getStaticProps() {
   const selectB = { id: true, price: true, products: true, kg: true }
@@ -27,6 +28,7 @@ export async function getStaticProps() {
 export default function Home({ baskets, extras }) {
   const { query } = useRouter()
   const { t, lang } = useTranslation('home')
+  const ctx = useCtx()
 
   function navigateToText() {
     document.querySelector('#que-fem').scrollIntoView({ behavior: 'smooth' })
@@ -83,24 +85,27 @@ export default function Home({ baskets, extras }) {
           ))}
         </ul>
         <p>{t`section-3.content-3`}</p>
-        <Link href="/les-meves-cistelles">
-          <a style={{ textDecoration: 'none' }}>
-            <div
-              style={{
-                color: 'white',
-                margin: '30px auto',
-                backgroundColor: '#99b67e',
-                borderRadius: 30,
-                textAlign: 'center',
-                padding: 10,
-                width: '100%',
-                maxWidth: 250,
-              }}
-            >
-              {t`section-3.button`}
-            </div>
-          </a>
-        </Link>
+
+        {ctx.new && (
+          <Link href="/les-meves-cistelles">
+            <a style={{ textDecoration: 'none' }}>
+              <div
+                style={{
+                  color: 'white',
+                  margin: '30px auto',
+                  backgroundColor: '#99b67e',
+                  borderRadius: 30,
+                  textAlign: 'center',
+                  padding: 10,
+                  width: '100%',
+                  maxWidth: 250,
+                }}
+              >
+                {t`section-3.button`}
+              </div>
+            </a>
+          </Link>
+        )}
 
         <h2>{t`section-4.title`}</h2>
         <p>{t`section-4.content`}</p>
