@@ -13,9 +13,5 @@
   "privacy": "Política de privacidad",
   "login-description": "Para subscribirte a les cestas necesita una cuenta.",
   "email": "Email",
-  "password": "Contraseña",
-  "enter": "Entrar",
-  "error": {
-    "login": "El usuario o contraseña no son correctas."
-  }
+  "enter": "Entrar"
 }
