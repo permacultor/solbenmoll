@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 
 import Breadcrumb from '../components/Breadcrumb'
@@ -89,11 +89,12 @@ function MyBaskets() {
 }
 
 const defaults = {
-  ous: false,
-  ceba: false,
-  time: '1',
-  fruita: false,
-  basket: 'petita',
+  ous: { time: 0, count: 0 },
+  ceba: { time: 0, count: 0 },
+  fruita: { time: 0, count: 0 },
+  petita: { time: 0, count: 0 },
+  mitjana: { time: 0, count: 0 },
+  gran: { time: 0, count: 0 },
 }
 
 const voidFn = (v) => {}
@@ -104,12 +105,19 @@ function SubsForm({
   onCancel = voidFn,
   displayCancelBtn = false,
 }) {
-  const [basket, setBasket] = useState(defaultValues.basket)
+  const [petita, setPetita] = useState(defaultValues.petita)
+  const [mitjana, setMitjana] = useState(defaultValues.mitjana)
+  const [gran, setGran] = useState(defaultValues.gran)
   const [ous, setOus] = useState(defaultValues.ous)
   const [ceba, setCeba] = useState(defaultValues.ceba)
-  const [time, setTime] = useState(defaultValues.time)
   const [fruita, setFruita] = useState(defaultValues.fruita)
-  const price = calcPrice({ basket, ous, ceba, fruita })
+  const state = { petita, mitjana, gran, ous, ceba, fruita }
+  const setters = { setPetita, setMitjana, setGran, setOus, setCeba, setFruita }
+  const price = calcPrice(state)
+  const baskets = [petita, mitjana, gran]
+    .filter((b) => b.count)
+    .map((b) => b.time)
+  const times = Array.from(new Set(baskets))
 
   function submit(e) {
     e.preventDefault()
@@ -117,73 +125,109 @@ function SubsForm({
       ous,
       fruita,
       ceba,
-      basket,
-      time,
+      petita,
+      mitjana,
+      gran,
     })
+  }
+
+  useEffect(updateExtraWhenChangeBasket, [times.join('')])
+  function updateExtraWhenChangeBasket() {
+    const noTimes = times.length === 0
+    if (noTimes || (ceba.time && !times.includes(ceba.time))) {
+      setCeba((c) => ({ count: noTimes ? 0 : c.count, time: 0 }))
+    }
+    if (noTimes || (ous.time && !times.includes(ous.time))) {
+      setOus((o) => ({ count: noTimes ? 0 : o.count, time: 0 }))
+    }
+    if (noTimes || (fruita.time && !times.includes(fruita.time))) {
+      setFruita((f) => ({ count: noTimes ? 0 : f.count, time: 0 }))
+    }
+  }
+
+  function getFields(start, end, isExtra) {
+    return Object.keys(state)
+      .slice(start, end)
+      .map((key) => {
+        const capitalized = key[0].toUpperCase() + key.slice(1, key.length)
+
+        return (
+          <React.Fragment key={key}>
+            <label htmlFor={key}>{capitalized}:</label>
+            <div style={{ marginBottom: 20 }}>
+              <input
+                type="number"
+                min={0}
+                id={key}
+                disabled={isExtra && times.length === 0}
+                max={100}
+                value={state[key].count}
+                onChange={(e) => {
+                  const fn = setters[`set${capitalized}`]
+                  const val = parseInt(e.target.value, 10) || 0
+                  if (val === 0) return fn({ count: 0, time: 0 })
+                  if (state[key].count === 0 && val !== 0)
+                    return fn({ count: val, time: 1 })
+                  fn((p) => ({ ...p, count: val }))
+                }}
+              />
+              <select
+                value={state[key].time.toString()}
+                style={
+                  state[key].time === 0
+                    ? { fontStyle: 'italic', color: '#625a50' }
+                    : {}
+                }
+                disabled={isExtra && times.length === 0}
+                onChange={(e) => {
+                  const fn = setters[`set${capitalized}`]
+                  const val = parseInt(e.target.value, 10)
+                  if (val === 0) return fn({ count: 0, time: 0 })
+                  fn((p) => ({
+                    count: p.count === 0 && val !== 0 ? 1 : p.count,
+                    time: val,
+                  }))
+                }}
+              >
+                <option className="useless" value="0">
+                  {state[key].time === 0
+                    ? 'Cada quan ho vol rebre?'
+                    : 'No ho vull rebre'}
+                </option>
+                <option disabled={isExtra && !times.includes(1)} value="1">
+                  Setmanal
+                </option>
+                <option disabled={isExtra && !times.includes(2)} value="2">
+                  Cada dues setmanes
+                </option>
+                <option disabled={isExtra && !times.includes(3)} value="3">
+                  Cada tres setmanes
+                </option>
+                <option disabled={isExtra && !times.includes(4)} value="4">
+                  Cada quatre setmanes
+                </option>
+              </select>
+            </div>
+          </React.Fragment>
+        )
+      })
   }
 
   return (
     <form onSubmit={submit} className="subscription-form">
       <div>
-        <label htmlFor="size">Mida de la cistella:</label>
-        <select
-          value={basket}
-          onChange={(e) => setBasket(e.target.value)}
-          name="size"
-          id="size"
-        >
-          <option value="petita">Petita (3 Kg)</option>
-          <option value="mitjana">Mitjana (5 Kg)</option>
-          <option value="gran">Gran (7 Kg)</option>
-        </select>
-
-        <label htmlFor="time">Cada quan la rebs:</label>
-        <select
-          value={time}
-          onChange={(e) => setTime(e.target.value)}
-          name="time"
-          id="time"
-        >
-          <option value="1">Setmanal</option>
-          <option value="2">Cada dues setmanes</option>
-          <option value="3">Cada tres setmanes</option>
-          <option value="4">Mensual</option>
-        </select>
+        <h2>Cistelles</h2>
+        {getFields(0, 3, false)}
       </div>
       <div>
-        <label htmlFor="extra-ous">Extra ous ecologics:</label>
-        <select
-          value={ous ? 'y' : 'n'}
-          onChange={(e) => setOus(e.target.value === 'y')}
-          id="extra-ous"
-        >
-          <option value="n">No</option>
-          <option value="y">Si</option>
-        </select>
-
-        <label htmlFor="extra-fruita">Extra de fruita:</label>
-        <select
-          value={fruita ? 'y' : 'n'}
-          onChange={(e) => setFruita(e.target.value === 'y')}
-          id="extra-fruita"
-        >
-          <option value="n">No</option>
-          <option value="y">Si</option>
-        </select>
-
-        <label htmlFor="extra-ceba">Extra de ceba i patata:</label>
-        <select
-          value={ceba ? 'y' : 'n'}
-          onChange={(e) => setCeba(e.target.value === 'y')}
-          id="extra-ceba"
-        >
-          <option value="n">No</option>
-          <option value="y">Si</option>
-        </select>
+        <h2>Extres</h2>
+        {getFields(3, 6, true)}
       </div>
       <div className="submit">
         <span className="price">{price} €</span>
-        <button className="button">Desar canvis</button>
+        <button disabled={price === 0} className="button">
+          Desar canvis
+        </button>
         {displayCancelBtn && (
           <button
             style={{ marginTop: 15 }}

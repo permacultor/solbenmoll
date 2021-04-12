@@ -23,7 +23,11 @@ function Calendar({
     <div className={styles.calendar} {...props}>
       {weeks.map((week, index) => {
         const sub = exceptions[week.name] || subscription
-        const active = index % parseInt(sub.time) === 0
+        const pActive = index % parseInt(sub.petita.time) === 0
+        const mActive = index % parseInt(sub.mitjana.time) === 0
+        const gActive = index % parseInt(sub.gran.time) === 0
+        const active = pActive || mActive || gActive
+
         return (
           <div
             key={week.name}
@@ -38,10 +42,18 @@ function Calendar({
             )}
             {active && (
               <>
-                <div>{'🥦 ' + t(`name-basket-${sub.basket}`)}</div>
-                {sub.ous && <div>🥚 Ous</div>}
-                {sub.fruita && <div>🍇 Fruita</div>}
-                {sub.ceba && <div>🧅 Ceba i patata</div>}
+                {sub.petita.count > 0 && (
+                  <div>{'🥦 ' + t(`name-basket-petita`)}</div>
+                )}
+                {sub.mitjana.count > 0 && (
+                  <div>{'🥦 ' + t(`name-basket-mitjana`)}</div>
+                )}
+                {sub.gran.count > 0 && (
+                  <div>{'🥦 ' + t(`name-basket-gran`)}</div>
+                )}
+                {sub.ous.count > 0 && <div>🥚 Ous</div>}
+                {sub.fruita.count > 0 && <div>🍇 Fruita</div>}
+                {sub.ceba.count > 0 && <div>🧅 Ceba i patata</div>}
                 <div
                   style={{ textAlign: 'end', marginTop: 'auto' }}
                   className="price"

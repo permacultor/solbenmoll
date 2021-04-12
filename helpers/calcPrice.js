@@ -1,14 +1,18 @@
-const basketPrice = {
-  petita: 10,
-  mitjana: 14.5,
-  gran: 20,
-}
-
 // @todo Replace constants to DB prices
-export default function calcPrice({ basket, ous, ceba, fruita }) {
-  let price = basketPrice[basket]
-  if (ous) price += 2.3
-  if (ceba) price += 4.5
-  if (fruita) price += 5.5
-  return price
+export default function calcPrice({
+  petita,
+  mitjana,
+  gran,
+  ous,
+  ceba,
+  fruita,
+}) {
+  return (
+    petita.count * 10 +
+    mitjana.count * 14.5 +
+    gran.count * 20 +
+    ous.count * 2.3 +
+    ceba.count * 4.5 +
+    fruita.count * 5.5
+  )
 }
