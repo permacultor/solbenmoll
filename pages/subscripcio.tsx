@@ -97,7 +97,7 @@ const defaults = {
   gran: { time: 0, count: 0 },
 }
 
-const voidFn = (v) => { }
+const voidFn = (v) => {}
 
 function SubsForm({
   defaultValues = defaults,
@@ -169,7 +169,7 @@ function SubsForm({
                   const val = parseInt(e.target.value, 10) || 0
                   if (val === 0) return fn({ count: 0, time: 0 })
                   if (state[key].count === 0 && val !== 0)
-                    return fn({ count: val, time: 1 })
+                    return fn({ count: val, time: isExtra ? times[0] || 0 : 1 })
                   fn((p) => ({ ...p, count: val }))
                 }}
               />
