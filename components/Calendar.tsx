@@ -3,17 +3,18 @@ import calcPrice from '../helpers/calcPrice'
 import styles from './Calendar.module.scss'
 
 const defaultSubs = {
-  time: undefined,
-  basket: undefined,
-  ous: false,
-  ceba: false,
-  fruita: false,
+  peita: {},
+  mitjana: {},
+  gran: {},
+  ous: {},
+  ceba: {},
+  fruita: {},
 }
 
 function Calendar({
   exceptions = {},
   subscription = defaultSubs,
-  onClickSubscription = (v) => {},
+  onClickSubscription = (v) => { },
   ...props
 }) {
   const { t, lang } = useTranslation('my-baskets')
