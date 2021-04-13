@@ -19,6 +19,7 @@ function Subscription() {
   function onAdd(sub) {
     setCalendar(sub)
     setKey(Date.now())
+    window.scroll({ top: 0 })
   }
 
   function onEdit(sub) {
@@ -97,7 +98,7 @@ const defaults = {
   gran: { time: 0, count: 0 },
 }
 
-const voidFn = (v) => {}
+const voidFn = (v) => { }
 
 function SubsForm({
   defaultValues = defaults,
