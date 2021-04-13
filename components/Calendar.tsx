@@ -65,17 +65,17 @@ function Calendar({
                 )}
                 {sub.ous.count > 0 && (
                   <div>
-                    <b>{`${sub.ous.count}x `}</b>🥚 Ous
+                    <b>{`${sub.ous.count}x `}</b>Ous 🥚
                   </div>
                 )}
                 {sub.fruita.count > 0 && (
                   <div>
-                    <b>{`${sub.fruita.count}x `}</b>🍇 Fruita
+                    <b>{`${sub.fruita.count}x `}</b>Fruita 🍇
                   </div>
                 )}
                 {sub.ceba.count > 0 && (
                   <div>
-                    <b>{`${sub.ceba.count}x `}</b>🧅 Ceba i patata
+                    <b>{`${sub.ceba.count}x `}</b>Ceba i patata 🧅
                   </div>
                 )}
                 <div
