@@ -14,7 +14,7 @@ const defaultSubs = {
 function Calendar({
   exceptions = {},
   subscription = defaultSubs,
-  onClickSubscription = (v) => { },
+  onClickSubscription = (v) => {},
   ...props
 }) {
   const { t, lang } = useTranslation('my-baskets')
@@ -51,34 +51,37 @@ function Calendar({
                 {sub.petita.count > 0 && pActive && (
                   <div>
                     <b>{`${sub.petita.count}x `}</b>
-                    {t(`name-basket-petita`) + ' 🥑'}
+                    {t(`product-petita`) + ' 🥑'}
                   </div>
                 )}
                 {sub.mitjana.count > 0 && mActive && (
                   <div>
                     <b>{`${sub.mitjana.count}x `}</b>
-                    {t(`name-basket-mitjana`) + ' 🥦'}
+                    {t(`product-mitjana`) + ' 🥦'}
                   </div>
                 )}
                 {sub.gran.count > 0 && gActive && (
                   <div>
                     <b>{`${sub.gran.count}x `}</b>
-                    {t(`name-basket-gran`) + ' 🥬'}
+                    {t(`product-gran`) + ' 🥬'}
                   </div>
                 )}
                 {sub.ous.count > 0 && oActive && (
                   <div>
-                    <b>{`${sub.ous.count}x `}</b>Ous 🥚
+                    <b>{`${sub.ous.count}x `}</b>
+                    {t(`product-ous`) + ' 🥚'}
                   </div>
                 )}
                 {sub.fruita.count > 0 && fActive && (
                   <div>
-                    <b>{`${sub.fruita.count}x `}</b>Fruita 🍇
+                    <b>{`${sub.fruita.count}x `}</b>
+                    {t(`product-fruita`) + ' 🍇'}
                   </div>
                 )}
                 {sub.ceba.count > 0 && cActive && (
                   <div>
-                    <b>{`${sub.ceba.count}x `}</b>Ceba i patata 🧅
+                    <b>{`${sub.ceba.count}x `}</b>
+                    {t(`product-ceba`) + ' 🧅'}
                   </div>
                 )}
                 <div
