@@ -98,7 +98,7 @@ const defaults = {
   gran: { time: 0, count: 0 },
 }
 
-const voidFn = (v) => { }
+const voidFn = (v) => {}
 
 function SubsForm({
   defaultValues = defaults,
@@ -136,13 +136,13 @@ function SubsForm({
   useEffect(updateExtraWhenChangeBasket, [times.join('')])
   function updateExtraWhenChangeBasket() {
     const noTimes = times.length === 0
-    if (noTimes || (ceba.time && !times.includes(ceba.time))) {
+    if (noTimes || (ceba.time && !times.some((t) => ceba.time % t === 0))) {
       setCeba((c) => ({ count: noTimes ? 0 : c.count, time: 0 }))
     }
-    if (noTimes || (ous.time && !times.includes(ous.time))) {
+    if (noTimes || (ous.time && !times.some((t) => ous.time % t === 0))) {
       setOus((o) => ({ count: noTimes ? 0 : o.count, time: 0 }))
     }
-    if (noTimes || (fruita.time && !times.includes(fruita.time))) {
+    if (noTimes || (fruita.time && !times.some((t) => fruita.time % t === 0))) {
       setFruita((f) => ({ count: noTimes ? 0 : f.count, time: 0 }))
     }
   }
@@ -200,16 +200,28 @@ function SubsForm({
                       ? 'Cada quan ho vol rebre?'
                       : 'No ho vull rebre'}
                   </option>
-                  <option disabled={isExtra && !times.some(t => 1 % t === 0)} value="1">
+                  <option
+                    disabled={isExtra && !times.some((t) => 1 % t === 0)}
+                    value="1"
+                  >
                     Setmanal
                   </option>
-                  <option disabled={isExtra && !times.some(t => 2 % t === 0)} value="2">
+                  <option
+                    disabled={isExtra && !times.some((t) => 2 % t === 0)}
+                    value="2"
+                  >
                     Cada dues setmanes
                   </option>
-                  <option disabled={isExtra && !times.some(t => 3 % t === 0)} value="3">
+                  <option
+                    disabled={isExtra && !times.some((t) => 3 % t === 0)}
+                    value="3"
+                  >
                     Cada tres setmanes
                   </option>
-                  <option disabled={isExtra && !times.some(t => 4 % t === 0)} value="4">
+                  <option
+                    disabled={isExtra && !times.some((t) => 4 % t === 0)}
+                    value="4"
+                  >
                     Cada quatre setmanes
                   </option>
                 </select>
