@@ -67,7 +67,7 @@ export default function Home({ baskets, extras }) {
         <ul>
           {baskets.map((basket) => (
             <li key={basket.id}>
-              {t(`my-baskets:name-basket-${basket.id}`)}
+              {t(`my-baskets:product-${basket.id}`)}
               {` (${t('my-baskets:resume', {
                 count: basket.products.length,
                 kg: basket.kg,
