@@ -4,6 +4,7 @@ import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
 
 import Anchor from '../components/Anchor'
+import Center from '../components/Center'
 import PickUpPointsMap from '../components/PickUpPointsMap'
 import prisma from '../lib/prisma'
 import { useCtx } from './_app'
@@ -51,14 +52,24 @@ export default function Home({ baskets, extras }) {
         loading="lazy"
         placeholder="blur"
         className="banner"
-        height={960}
-        width={1920}
+        height={400}
+        width={1200}
       />
       <div className="content">
         <Anchor id="que-fem" />
 
         <h1>{t`section-1.title`}</h1>
         <p>{t`section-1.content`}</p>
+
+        <Center>
+          <Image
+            layout="fixed"
+            loading="lazy"
+            src="/assets/qui-som.png"
+            width={250}
+            height={169}
+          />
+        </Center>
 
         <h2>{t`section-2.title`}</h2>
         <p>{t`section-2.content`}</p>

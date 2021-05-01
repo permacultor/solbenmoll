@@ -2,6 +2,7 @@ import useTranslation from 'next-translate/useTranslation'
 import React, { useState } from 'react'
 import ReactMapGL, { Marker, Popup } from 'react-map-gl'
 import MapMarkerIcon from './Icons/MapMarker'
+import { useOnVisible } from '../helpers/useOnVisible'
 
 const pickUpPoints = [
   {
@@ -104,6 +105,8 @@ const initialState = {
 
 function PickUpPointsMap() {
   const { t } = useTranslation('home')
+  const [isVisible, setVisible] = useState(false)
+  const [ref] = useOnVisible('300px 0px', () => setVisible(true))
   const [selectedPoint, setSelectedPoint] = useState(null)
   const [viewport, setViewport] = useState(initialState)
   const isInitialState =
@@ -123,6 +126,19 @@ function PickUpPointsMap() {
   function reset() {
     setViewport(initialState)
     setSelectedPoint(null)
+  }
+
+  if (!isVisible) {
+    return (
+      <div
+        ref={ref as any}
+        style={{
+          width: initialState.width,
+          height: initialState.height,
+          backgroundColor: '#d6d6d6',
+        }}
+      />
+    )
   }
 
   return (
