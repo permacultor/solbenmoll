@@ -52,8 +52,8 @@ export default function Home({ baskets, extras }) {
         loading="lazy"
         placeholder="blur"
         className="banner"
-        height={488}
-        width={1200}
+        height={569}
+        width={1400}
       />
       <div className="content">
         <Anchor id="que-fem" />
