@@ -52,7 +52,7 @@ export default function Home({ baskets, extras }) {
         loading="lazy"
         placeholder="blur"
         className="banner"
-        height={400}
+        height={488}
         width={1200}
       />
       <div className="content">
