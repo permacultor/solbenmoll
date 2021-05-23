@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import firebase from 'firebase'
-import getWeeks from '../helpers/getWeeks'
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/firestore'
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp({
