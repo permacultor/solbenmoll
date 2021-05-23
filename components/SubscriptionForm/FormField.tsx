@@ -2,7 +2,7 @@ import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 
 function FormField({ id, state, isEditing, isExtra, times, setters }) {
-  const { t } = useTranslation('my-baskets')
+  const { t } = useTranslation('common')
   const capitalized = id[0].toUpperCase() + id.slice(1, id.length)
   const setter = setters[`set${capitalized}`]
 

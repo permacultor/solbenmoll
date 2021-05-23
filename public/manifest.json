@@ -1,7 +1,7 @@
 {
-  "name": "Sòlbenmoll",
-  "description": "",
-  "short_name": "Sòlbenmoll",
+  "name": "Sòl Ben Moll",
+  "description": "Sòl Ben Moll és un projecte agroecològic que es dedica a la producció i distribució d'hortalisses i verdures de temporada. Amb l’hort situat a Cabrera de Mar, Maresme, servim cistelles de verdures setmanals a Barcelona i rodalies, reivindicant una alimentació ecològica, sana, i de proximitat.",
+  "short_name": "Sòl Ben Moll",
   "icons": [
     {
       "src": "/assets/logo-96.png",
@@ -20,5 +20,5 @@
   "background_color": "white",
   "display": "fullscreen",
   "orientation": "portrait",
-  "start_url": "/"
+  "start_url": "/subscripcio"
 }

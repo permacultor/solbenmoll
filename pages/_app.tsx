@@ -1,3 +1,4 @@
+import useTranslation from 'next-translate/useTranslation'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
@@ -51,6 +52,7 @@ function usePersistLocaleCookie() {
 }
 
 function MyApp({ Component, pageProps }) {
+  const { t } = useTranslation('common')
   const { locale, defaultLocale, asPath } = useRouter()
   const path = asPath === '/' ? '' : asPath
   const prefix = locale === defaultLocale ? '' : '/' + locale
@@ -62,6 +64,7 @@ function MyApp({ Component, pageProps }) {
     <AuthProvider>
       <Head>
         <title>Sòl Ben Moll</title>
+        <meta name="description" content={t`home-content.section-1.content`} />
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="alternate"
