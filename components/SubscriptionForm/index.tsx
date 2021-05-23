@@ -13,7 +13,7 @@ const defaults = {
   petita: { time: 0, count: 0 },
 }
 
-const voidFn = (v) => {}
+const voidFn = (v) => { }
 
 function SubsForm({
   defaultValues = defaults,
@@ -21,7 +21,7 @@ function SubsForm({
   onCancel = voidFn,
   isEditing = false,
 }) {
-  const { t } = useTranslation('my-baskets')
+  const { t } = useTranslation('common')
   const [petita, setPetita] = useState(defaultValues.petita)
   const [mitjana, setMitjana] = useState(defaultValues.mitjana)
   const [gran, setGran] = useState(defaultValues.gran)
